@@ -1,0 +1,219 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+enum ApartmentStatus {
+  AVAILABLE
+  RENTED
+  UNAVAILABLE
+}
+
+model User {
+  id	       String        @id @default(cuid())
+  firstName  String?
+  lastName   String?
+
+  // --- Field to Login --- 
+  email       String? @unique
+  phone       String? @unique
+  username    String @unique
+  // ----------------------
+
+  emailVerified Boolean @default(false)
+  age        Int?
+  gender     Gender?
+  avatar     String?
+  password   String
+
+  userRoles       UserRole[]
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+
+  //Start Of Relationship field
+  managedApartments  Apartment[] @relation("ContactPerson")
+  //End Of Relationship field
+}
+
+model Role {
+  id    String @id @default(cuid())
+  name  String @unique
+  desc  String?
+
+  userRoles UserRole[]
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+  //Start Of Relationship field
+  //End Of Relationship field
+}
+
+model UserRole {
+  id    String @id @default(cuid())
+
+  userId String
+  roleId String
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+
+  //Start Of Relationship field
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+  //End Of Relationship field
+
+  @@unique([userId, roleId])
+}
+
+
+model Zone {
+  id    String @id @default(cuid())
+  name  String @unique
+  desc  String?
+  areas Area[]
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+  //Start Of Relationship field
+  //End Of Relationship field
+}
+
+model Area {
+  id    String @id @default(cuid())
+  name  String
+
+  zoneId  String
+
+  buildings Building[]
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+
+  //Start Of Relationship field
+  zone    Zone @relation(fields: [zoneId], references: [id])
+  //End Of Relationship field
+
+  @@unique([name, zoneId])
+}
+
+model Building {
+  id      String @id @default(cuid())
+  name    String
+
+  areaId  String
+
+  apartments Apartment[]
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+
+  //Start Of Relationship field
+  area      Area @relation(fields: [areaId], references: [id])
+  //End Of Relationship field
+
+  @@unique([name, areaId])
+}
+
+model ApartmentImage {
+  id      String @id @default(cuid())
+  url     String
+
+  apartmentId String
+  
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+
+  //Start Of Relationship field
+  apartment   Apartment @relation(fields: [apartmentId], references: [id])
+  //End Of Relationship field
+}
+
+model Apartment {
+  id          String @id @default(cuid())
+  description String?
+
+  price       Decimal
+  areaSize    Float
+  bedrooms    Int
+  bathrooms   Int
+  priority    Int   @default(0)
+
+  status      ApartmentStatus @default(AVAILABLE)
+
+  contactUserId String
+  buildingId    String
+  images        ApartmentImage[]
+
+  //Start Of info-field => Use in every entity
+  createBy  String?
+  createAt  DateTime @default(now())
+  updateBy  String?
+  updateAt  DateTime @updatedAt
+  fromDate  DateTime @default(now())
+  toDate    DateTime? 
+  //End Of info-field
+
+  //Start Of Relationship field
+  building    Building @relation(fields: [buildingId], references: [id])
+  contactUser   User @relation("ContactPerson", fields: [contactUserId], references: [id])
+  //End Of Relationship field
+}

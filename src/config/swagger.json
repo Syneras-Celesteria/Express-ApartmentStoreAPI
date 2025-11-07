@@ -1,0 +1,1695 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"SuccessCode": {
+				"enum": [
+					"OPERATION_SUCCESS"
+				],
+				"type": "string"
+			},
+			"GeneralResponse": {
+				"properties": {
+					"data": {},
+					"code": {
+						"$ref": "#/components/schemas/SuccessCode"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"data",
+					"code",
+					"message"
+				],
+				"type": "object"
+			},
+			"CreateZoneDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"desc": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateZoneDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"desc": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateUserDTO": {
+				"properties": {
+					"username": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"confirmPassword": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"username",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"_36_Enums.Gender": {
+				"type": "string",
+				"enum": [
+					"male",
+					"female",
+					"other"
+				]
+			},
+			"Gender": {
+				"$ref": "#/components/schemas/_36_Enums.Gender"
+			},
+			"UpdateUserDTO": {
+				"properties": {
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"age": {
+						"type": "number",
+						"format": "double"
+					},
+					"gender": {
+						"$ref": "#/components/schemas/Gender"
+					},
+					"avatar": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateRoleDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"desc": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateBuildingDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"areaId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"areaId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateBuildingDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"areaId": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuthRequest": {
+				"properties": {
+					"identifier": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"identifier",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateAreaDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"zoneId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"zoneId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateAreaDTO": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"zoneId": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"_36_Enums.ApartmentStatus": {
+				"type": "string",
+				"enum": [
+					"AVAILABLE",
+					"RENTED",
+					"UNAVAILABLE"
+				]
+			},
+			"ApartmentStatus": {
+				"$ref": "#/components/schemas/_36_Enums.ApartmentStatus"
+			},
+			"CreateApartmentImageDTO": {
+				"properties": {
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateApartmentDTO": {
+				"properties": {
+					"description": {
+						"type": "string"
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					},
+					"areaSize": {
+						"type": "number",
+						"format": "double"
+					},
+					"bedrooms": {
+						"type": "number",
+						"format": "double"
+					},
+					"bathrooms": {
+						"type": "number",
+						"format": "double"
+					},
+					"priority": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"$ref": "#/components/schemas/ApartmentStatus"
+					},
+					"contactUserId": {
+						"type": "string"
+					},
+					"buildingId": {
+						"type": "string"
+					},
+					"images": {
+						"items": {
+							"$ref": "#/components/schemas/CreateApartmentImageDTO"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"price",
+					"areaSize",
+					"bedrooms",
+					"bathrooms",
+					"contactUserId",
+					"buildingId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateApartmentDTO": {
+				"properties": {
+					"description": {
+						"type": "string"
+					},
+					"price": {
+						"type": "number",
+						"format": "double"
+					},
+					"areaSize": {
+						"type": "number",
+						"format": "double"
+					},
+					"bedrooms": {
+						"type": "number",
+						"format": "double"
+					},
+					"bathrooms": {
+						"type": "number",
+						"format": "double"
+					},
+					"priority": {
+						"type": "number",
+						"format": "double"
+					},
+					"status": {
+						"$ref": "#/components/schemas/ApartmentStatus"
+					},
+					"contactUserId": {
+						"type": "string"
+					},
+					"buildingId": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"jwt": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		}
+	},
+	"info": {
+		"title": "apartment-api",
+		"version": "1.0.1",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/zones": {
+			"post": {
+				"operationId": "CreateZone",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Tạo Phân khu (Zone) mới",
+				"tags": [
+					"Zone Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateZoneDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "GetAllZones",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy tất cả Phân khu (phân trang)",
+				"tags": [
+					"Zone Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "pageIndex",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/zones/{zoneId}": {
+			"put": {
+				"operationId": "UpdateZone",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cập nhật Phân khu",
+				"tags": [
+					"Zone Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "zoneId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateZoneDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteZone",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Xóa mềm Phân khu",
+				"tags": [
+					"Zone Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "zoneId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "GetZoneById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy Phân khu bằng ID",
+				"tags": [
+					"Zone Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "zoneId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users": {
+			"get": {
+				"operationId": "GetUsers",
+				"responses": {
+					"200": {
+						"description": "Thông tin người dùng.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy thông tin người dùng theo ID.",
+				"tags": [
+					"User Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "ID của người dùng.",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateUser",
+				"responses": {
+					"200": {
+						"description": "Thông tin người dùng sau khi cập nhật.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cập nhật thông tin người dùng (chỉ Admin).",
+				"tags": [
+					"User Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "ID của người dùng.",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Dữ liệu mới cần cập nhật.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUserDTO",
+								"description": "Dữ liệu mới cần cập nhật."
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteUser",
+				"responses": {
+					"200": {
+						"description": "Kết quả xóa người dùng.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Xóa người dùng theo ID (chỉ Admin).",
+				"tags": [
+					"User Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "ID của người dùng cần xóa.",
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users/all": {
+			"get": {
+				"operationId": "GetAllUsers",
+				"responses": {
+					"200": {
+						"description": "Danh sách người dùng với phân trang.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy danh sách tất cả người dùng với phân trang.",
+				"tags": [
+					"User Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "Chỉ số trang.",
+						"in": "query",
+						"name": "pageIndex",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"description": "Kích thước trang.",
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/users/signUpInternal": {
+			"post": {
+				"operationId": "CreateUserInternal",
+				"responses": {
+					"200": {
+						"description": "Thông tin người dùng vừa tạo.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Đăng ký tài khoản mới (chỉ admin)",
+				"tags": [
+					"User Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"description": "Dữ liệu người dùng cần tạo.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserDTO",
+								"description": "Dữ liệu người dùng cần tạo."
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/signUp": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"200": {
+						"description": "Thông tin người dùng vừa tạo.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Đăng ký tài khoản mới (auto role: user)",
+				"tags": [
+					"User Management"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Dữ liệu người dùng cần tạo.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserDTO",
+								"description": "Dữ liệu người dùng cần tạo."
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/me": {
+			"put": {
+				"operationId": "UpdateCurrentUser",
+				"responses": {
+					"200": {
+						"description": "Thông tin người dùng sau khi cập nhật.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cập nhật thông tin của bản thân.",
+				"tags": [
+					"User Management"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"description": "Dữ liệu mới cần cập nhật.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUserDTO",
+								"description": "Dữ liệu mới cần cập nhật."
+							}
+						}
+					}
+				}
+			}
+		},
+		"/roles": {
+			"post": {
+				"operationId": "CreateRole",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Tạo một vai trò (Role) mới.\r\nChỉ Admin.",
+				"tags": [
+					"Role Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"description": "Thông tin Role (name, desc)",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateRoleDTO",
+								"description": "Thông tin Role (name, desc)"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/roles/{roleName}": {
+			"get": {
+				"operationId": "GetRole",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy thông tin Role bằng Tên.\r\nChỉ Admin.",
+				"tags": [
+					"Role Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "Tên của vai trò (ví dụ: \"USER\")",
+						"in": "path",
+						"name": "roleName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteRole",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Xóa mềm một vai trò (Role).\r\nChỉ Admin.",
+				"tags": [
+					"Role Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "Tên của vai trò (ví dụ: \"MANAGER\")",
+						"in": "path",
+						"name": "roleName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/buildings": {
+			"post": {
+				"operationId": "CreateBuilding",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Tạo Tòa nhà (Building) mới",
+				"tags": [
+					"Building Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateBuildingDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/buildings/{buildingId}": {
+			"put": {
+				"operationId": "UpdateBuilding",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cập nhật Tòa nhà",
+				"tags": [
+					"Building Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "buildingId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateBuildingDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteBuilding",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Xóa mềm Tòa nhà",
+				"tags": [
+					"Building Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "buildingId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "GetBuildingById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy Tòa nhà bằng ID",
+				"tags": [
+					"Building Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "buildingId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/buildings/by-area/{areaId}": {
+			"get": {
+				"operationId": "GetAllBuildingsByArea",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy tất cả Tòa nhà theo Khu vực (Area)",
+				"tags": [
+					"Building Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "areaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageIndex",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/auth/user": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "Thông tin xác thực và token.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Đăng nhập người dùng.",
+				"tags": [
+					"Authentication"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Thông tin đăng nhập.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AuthRequest",
+								"description": "Thông tin đăng nhập."
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/me": {
+			"get": {
+				"operationId": "GetCurrentLogin",
+				"responses": {
+					"200": {
+						"description": "Thông tin người dùng.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy thông tin người dùng hiện tại.",
+				"tags": [
+					"Authentication"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/areas": {
+			"post": {
+				"operationId": "CreateArea",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Tạo Khu vực (Area) mới",
+				"tags": [
+					"Area Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateAreaDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/areas/{areaId}": {
+			"put": {
+				"operationId": "UpdateArea",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cập nhật Khu vực",
+				"tags": [
+					"Area Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "areaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateAreaDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteArea",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Xóa mềm Khu vực",
+				"tags": [
+					"Area Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "areaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "GetAreaById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy Khu vực bằng ID",
+				"tags": [
+					"Area Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "areaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/areas/by-zone/{zoneId}": {
+			"get": {
+				"operationId": "GetAllAreasByZone",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy tất cả Khu vực theo Phân khu (Zone)",
+				"tags": [
+					"Area Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "zoneId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageIndex",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/apartments": {
+			"post": {
+				"operationId": "CreateApartment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Tạo Căn hộ (Apartment) mới",
+				"tags": [
+					"Apartment Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateApartmentDTO"
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "GetAllApartments",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy tất cả Căn hộ (Public)",
+				"tags": [
+					"Apartment Management"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "pageIndex",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/apartments/{apartmentId}": {
+			"put": {
+				"operationId": "UpdateApartment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Cập nhật Căn hộ",
+				"tags": [
+					"Apartment Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "apartmentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateApartmentDTO"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteApartment",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Xóa mềm Căn hộ",
+				"tags": [
+					"Apartment Management"
+				],
+				"security": [
+					{
+						"jwt": [
+							"ADMIN"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "apartmentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"get": {
+				"operationId": "GetApartmentById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy Căn hộ bằng ID (Public)",
+				"tags": [
+					"Apartment Management"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "apartmentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/apartments/by-building/{buildingId}": {
+			"get": {
+				"operationId": "GetAllApartmentsByBuilding",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GeneralResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Lấy tất cả Căn hộ theo Tòa nhà (Public)",
+				"tags": [
+					"Apartment Management"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "buildingId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageIndex",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "pageSize",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
