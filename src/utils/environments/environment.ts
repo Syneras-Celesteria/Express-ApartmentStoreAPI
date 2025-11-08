@@ -6,12 +6,15 @@ const environment = process.env.NODE_ENV || "development";
 const envPath = path.resolve(process.cwd(), `.env`);
 
 // Load env file
-const result = dotenv.config({ path: envPath });
-
-if (result.error) {
-    console.error("Error loading .env file:", result.error);
-    throw result.error;
+if (environment !== "production") {
+    const envPath = path.resolve(process.cwd(), `.env`)
+    const result = dotenv.config({ path: envPath });
+    if (result.error) {
+        console.error("Error loading .env file:", result.error);
+        throw result.error;
+    }
 }
+
 
 export interface DatabaseConfig {
     connectionString?: string;
