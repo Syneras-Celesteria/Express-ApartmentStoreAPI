@@ -19,17 +19,17 @@ async function main() {
 
     await prisma.user.upsert({
         where: { email: 'master@master.com' },
-        update: { password: await PasswordUtil.hashPassword('Syne.263') }, 
+        update: { password: await PasswordUtil.hashPassword('Abc@12345') }, 
         create: {
             firstName: 'Master',
             lastName: 'Admin',
             username: 'Admin',
-            phone: '0563343245',
+            phone: '0123456789',
             age: 20,
             emailVerified: true,
             gender: Gender.male,
-            email: 'imasyneras@gmail.com',
-            password: await PasswordUtil.hashPassword('Syne.263'),
+            email: 'master@master.com',
+            password: await PasswordUtil.hashPassword('Abc@12345'),
 
             userRoles: {
                 create: [
