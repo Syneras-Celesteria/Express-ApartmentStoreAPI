@@ -20,7 +20,10 @@ import {  ErrorResponseV2, RejectResponseV2, UnAuthResponseV2 } from './business
 import { ErrorCode } from './utils/enums/enums';
 import config from './utils/environments/environment';
 
-dotenv.config(); // Loads .env from the root
+
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config(); // Loads .env from the root
+}
 // Import Controllers and create Server
 const controllersPath = path.join(__dirname, "controllers");
 fs.readdirSync(controllersPath).forEach((file) => {
