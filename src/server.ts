@@ -20,15 +20,6 @@ import {  ErrorResponseV2, RejectResponseV2, UnAuthResponseV2 } from './business
 import { ErrorCode } from './utils/enums/enums';
 import config from './utils/environments/environment';
 
-
-if (process.env.NODE_ENV !== 'production') {
-    dotenv.config(); // Loads .env from the root
-}
-// Import Controllers and create Server
-const controllersPath = path.join(__dirname, "controllers");
-fs.readdirSync(controllersPath).forEach((file) => {
-    require(path.join(controllersPath, file));
-});
 const server = new InversifyExpressServer(iocContainer);
 
 // Middleware
@@ -99,6 +90,6 @@ server.setConfig((app) => {
 
 // Build and start the app
 const app = server.build();
-app.listen(process.env.PORT, () => {
-    console.log(`Server running on http://localhost:${process.env.PORT}`);
+app.listen(config.port, () => {
+    console.log(`Server running on http://localhost:${config.port}`);
 });
