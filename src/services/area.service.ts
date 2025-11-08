@@ -25,7 +25,7 @@ export class AreaService implements IAreaService {
                 throw new ErrorResponseV2(ErrorCode.ZONE_NOT_FOUND)
             }
 
-            const newArea = await this.zoneRepository.create(dto as Area, currentUser, tx)
+            const newArea = await this.areaRepository.create(dto as Area, currentUser, tx)
 
             const createdArea = await this.areaRepository.getById(newArea.id!, tx, { include: { zone: true } })
             return plainToClass(BaseArea, createdArea, { excludeExtraneousValues: true })
